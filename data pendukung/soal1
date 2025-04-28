@@ -1,0 +1,23 @@
+Basis gejala dan diagnosa
+penyakit(hawar_daun) :- daun_menguning, bercak_hitam, \+ tanaman_layu.
+penyakit(fusarium) :- daun_menguning, tanaman_layu, \+ bercak_hitam.
+penyakit(ulat_daun) :- daun_berlubang, tanaman_layu.
+penyakit(antraknosa) :- bercak_hitam, tanaman_layu, \+ daun_menguning.
+penyakit(thrips) :- daun_menguning, tanaman_layu, bercak_hitam.
+penyakit(sehat) :- \+ daun_menguning, \+ tanaman_layu, \+ daun_berlubang, \+ bercak_hitam.
+
+% Definisi fakta gejala (akan diisi oleh user)
+:- dynamic daun_menguning/0.
+:- dynamic bercak_hitam/0.
+:- dynamic daun_berlubang/0.
+:- dynamic tanaman_layu/0.
+
+% Program utama
+diagnosis :-
+    (penyakit(hawar_daun) -> writeln('Sepertinya tanaman anda terkena penyakit hawar daun');
+     penyakit(fusarium) -> writeln('Sepertinya tanaman anda terserang bakteri fusarium');
+     penyakit(ulat_daun) -> writeln('Tanaman anda dimakan ulat daun');
+     penyakit(antraknosa) -> writeln('Tanaman anda terjangkit antraknosa');
+     penyakit(thrips) -> writeln('Tanaman anda terserang thrips');
+     penyakit(sehat) -> writeln('Tanaman anda sehat');
+     writeln('Gejala tidak cocok dengan data yang ada. Silakan konsultasikan lebih lanjut.')).
